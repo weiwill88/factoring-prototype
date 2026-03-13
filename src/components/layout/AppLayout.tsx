@@ -10,11 +10,12 @@ import {
   SwapOutlined, AccountBookOutlined, BarChartOutlined, AimOutlined,
   SafetyOutlined, CalendarOutlined, WalletOutlined, SettingOutlined,
   SolutionOutlined, ReconciliationOutlined, ContainerOutlined, SnippetsOutlined,
-  MenuFoldOutlined, MenuUnfoldOutlined, ReloadOutlined
+  MenuFoldOutlined, MenuUnfoldOutlined, ReloadOutlined, LogoutOutlined, UserOutlined
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import type { PortalType } from '@/lib/types';
 import { resetAppData } from '@/lib/mockData';
+import { useAuth } from '@/lib/auth';
 
 const { Header, Sider, Content } = Layout;
 const { Title, Text } = Typography;
@@ -100,6 +101,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const { token } = theme.useToken();
+  const { isLoggedIn, username, logout } = useAuth();
   const [collapsed, setCollapsed] = useState(false);
   const [portal, setPortal] = useState<PortalType>(() => getPortalFromPath(pathname));
 
@@ -154,7 +156,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     return openKeys;
   };
 
-  if (pathname === '/') return <>{children}</>;
+  if (pathname === '/login' || pathname === '/') return <>{children}</>;
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -229,9 +231,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             />
           </Space>
           <Space>
-            <Text type="secondary" style={{ fontSize: 12 }}>原型演示环境</Text>
+            <Text type="secondary" style={{ fontSize: 12 }}><UserOutlined /> {username || 'admin'}</Text>
             <Dropdown menu={{ items: [
               { key: 'reset', label: '重置数据', icon: <ReloadOutlined />, onClick: () => { resetAppData(); window.location.reload(); } },
+              { type: 'divider' as const },
+              { key: 'logout', label: '退出登录', icon: <LogoutOutlined />, danger: true, onClick: logout },
             ] }}>
               <Button type="text" icon={<SettingOutlined />} />
             </Dropdown>
