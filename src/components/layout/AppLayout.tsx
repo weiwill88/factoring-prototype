@@ -165,9 +165,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         collapsible
         collapsed={collapsed}
         width={260}
+        theme="dark"
         style={{
-          background: token.colorBgContainer,
-          borderRight: `1px solid ${token.colorBorderSecondary}`,
+          background: 'linear-gradient(180deg, #0A1628 0%, #0F2035 100%)',
           overflow: 'auto',
           height: '100vh',
           position: 'fixed',
@@ -183,32 +183,44 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           alignItems: 'center',
           justifyContent: collapsed ? 'center' : 'flex-start',
           padding: collapsed ? '0' : '0 24px',
-          borderBottom: `1px solid ${token.colorBorderSecondary}`,
+          borderBottom: '1px solid rgba(255,255,255,0.08)',
         }}>
-          <BankOutlined style={{ fontSize: 24, color: token.colorPrimary }} />
+          <div style={{
+            width: 36, height: 36, borderRadius: 10,
+            background: 'linear-gradient(135deg, #2B6CB0, #4299E1)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: '0 2px 8px rgba(43,108,176,0.4)',
+          }}>
+            <BankOutlined style={{ fontSize: 20, color: '#fff' }} />
+          </div>
           {!collapsed && (
-            <Title level={4} style={{ margin: '0 0 0 12px', color: token.colorPrimary, whiteSpace: 'nowrap' }}>
+            <Title level={4} style={{ margin: '0 0 0 12px', color: '#fff', whiteSpace: 'nowrap', fontWeight: 600 }}>
               保理系统
             </Title>
           )}
         </div>
         <Menu
           mode="inline"
+          theme="dark"
           selectedKeys={getSelectedKeys()}
           defaultOpenKeys={getOpenKeys()}
           items={portalConfig[portal].menu}
           onClick={handleMenuClick}
-          style={{ border: 'none', padding: '8px 0' }}
+          style={{
+            background: 'transparent',
+            border: 'none',
+            padding: '8px 0',
+          }}
         />
       </Sider>
-      <Layout style={{ marginLeft: collapsed ? 80 : 260, transition: 'margin-left 0.2s' }}>
+      <Layout style={{ marginLeft: collapsed ? 80 : 260, transition: 'margin-left 0.2s', background: '#F7F8FA' }}>
         <Header style={{
-          background: token.colorBgContainer,
+          background: '#ffffff',
           padding: '0 24px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          borderBottom: `1px solid ${token.colorBorderSecondary}`,
+          boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
           position: 'sticky',
           top: 0,
           zIndex: 99,
@@ -219,6 +231,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               type="text"
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
               onClick={() => setCollapsed(!collapsed)}
+              style={{ color: '#4A5568' }}
             />
             <Segmented
               options={[
@@ -231,13 +244,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             />
           </Space>
           <Space>
-            <Text type="secondary" style={{ fontSize: 12 }}><UserOutlined /> {username || 'admin'}</Text>
+            <Text style={{ fontSize: 13, color: '#4A5568' }}><UserOutlined /> {username || 'admin'}</Text>
             <Dropdown menu={{ items: [
               { key: 'reset', label: '重置数据', icon: <ReloadOutlined />, onClick: () => { resetAppData(); window.location.reload(); } },
               { type: 'divider' as const },
               { key: 'logout', label: '退出登录', icon: <LogoutOutlined />, danger: true, onClick: logout },
             ] }}>
-              <Button type="text" icon={<SettingOutlined />} />
+              <Button type="text" icon={<SettingOutlined />} style={{ color: '#4A5568' }} />
             </Dropdown>
           </Space>
         </Header>

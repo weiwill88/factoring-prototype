@@ -5,7 +5,66 @@
 }
 
 html, body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #F7F8FA;
+}
+
+/* Dark sidebar menu overrides */
+.ant-layout-sider-dark .ant-menu-dark {
+  background: transparent !important;
+}
+
+.ant-layout-sider-dark .ant-menu-dark .ant-menu-item-selected {
+  background: rgba(43, 108, 176, 0.3) !important;
+  border-radius: 8px;
+}
+
+.ant-layout-sider-dark .ant-menu-dark .ant-menu-item:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-radius: 8px;
+}
+
+.ant-layout-sider-dark .ant-menu-dark .ant-menu-submenu-title:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-radius: 8px;
+}
+
+/* Card hover effect */
+.ant-card {
+  transition: box-shadow 0.2s ease;
+}
+
+/* Segmented control refinement */
+.ant-segmented {
+  background: #EDF2F7 !important;
+}
+
+.ant-segmented-item-selected {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+}
+
+/* Table refinements */
+.ant-table {
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
 }

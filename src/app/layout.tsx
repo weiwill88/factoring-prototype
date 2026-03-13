@@ -22,8 +22,23 @@ export default function RootLayout({
         <AntdRegistry>
           <ConfigProvider locale={zhCN} theme={{
             token: {
-              colorPrimary: '#1677ff',
-              borderRadius: 6,
+              colorPrimary: '#2B6CB0',
+              colorInfo: '#2B6CB0',
+              colorSuccess: '#38A169',
+              colorWarning: '#D69E2E',
+              colorError: '#E53E3E',
+              borderRadius: 10,
+              colorBgContainer: '#ffffff',
+              colorBgLayout: '#F7F8FA',
+              fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+            },
+            components: {
+              Card: { borderRadiusLG: 12 },
+              Button: { borderRadius: 8 },
+              Input: { borderRadius: 8 },
+              Select: { borderRadius: 8 },
+              Table: { borderRadius: 8 },
+              Segmented: { borderRadius: 8 },
             },
           }}>
             <AuthProvider>
